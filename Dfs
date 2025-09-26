@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int visited[50];
+
+void dfs(int n, int a[50][50], int start) {
+    int i;
+    printf("%d ", start);
+    visited[start] = 1;
+    for (i = 1; i <= n; i++) {
+        if (a[start][i] && !visited[i]) {
+            dfs(n, a, i);
+        }
+    }
+}
+
+int main() {
+    int n, a[50][50], i, j, start;
+    scanf("%d", &n);
+    for (i = 1; i <= n; i++)
+        for (j = 1; j <= n; j++)
+            scanf("%d", &a[i][j]);
+    scanf("%d", &start);
+    for (i = 1; i <= n; i++) visited[i] = 0;
+    dfs(n, a, start);
+    return 0;
+}
